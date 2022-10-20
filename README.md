@@ -33,11 +33,11 @@ also test
 
 Install [AI.Dev.OpenAI.GPT](https://www.nuget.org/packages/AI.Dev.OpenAI.GPT) NuGet package from nuget.org, e.g.:
 
-    dotnet add package AI.Dev.OpenAI.GPT --version 1.0.1
+    dotnet add package AI.Dev.OpenAI.GPT --version 1.0.2
 
 or
 
-    NuGet\Install-Package AI.Dev.OpenAI.GPT -Version 1.0.1
+    NuGet\Install-Package AI.Dev.OpenAI.GPT -Version 1.0.2
 
 ## Python and Node.js
 
