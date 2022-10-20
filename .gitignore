@@ -1,0 +1,13 @@
+bin/
+obj/
+node_modules/
+.idea/
+.vs/
+.fx/
+*.user
+*.zip
+*.nupkg
+*.key
+*.log
+*.tmp
+_*
