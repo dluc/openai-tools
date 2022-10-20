@@ -29,6 +29,16 @@ The result of this library is compatible with OpenAI GPT tokenizer that you can
 also test
 [here](https://beta.openai.com/tokenizer).
 
+### Installation
+
+Install [AI.Dev.OpenAI.GPT](https://www.nuget.org/packages/AI.Dev.OpenAI.GPT) NuGet package from nuget.org, e.g.:
+
+    dotnet add package AI.Dev.OpenAI.GPT --version 1.0.1
+
+or
+
+    NuGet\Install-Package AI.Dev.OpenAI.GPT -Version 1.0.1
+
 ## Python and Node.js
 
 If you are looking for an equivalent solution in other languages:
