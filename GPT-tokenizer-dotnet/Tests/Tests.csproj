@@ -7,7 +7,7 @@
         <RootNamespace />
         <IsPackable>false</IsPackable>
         <Authors>Devis Lucato</Authors>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageLicenseExpression>CC0</PackageLicenseExpression>
         <Copyright>Devis Lucato</Copyright>
     </PropertyGroup>
 

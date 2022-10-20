@@ -8,12 +8,13 @@
         <RootNamespace>AI.Dev.OpenAI.GPT</RootNamespace>
         <Authors>Devis Lucato</Authors>
         <PackageProjectUrl>https://github.com/dluc/openai-tools</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/dluc/openai-tools</RepositoryUrl>
         <PackageTags>OpenAI GPT GPT3 Tokenizer Tokens AI</PackageTags>
         <Title>OpenAI GPT utils</Title>
         <Description>OpenAI GPT utils, e.g. GPT3 Tokenizer</Description>
         <Copyright>Devis Lucato</Copyright>
+        <PackageVersion>1.0.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

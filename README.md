@@ -31,7 +31,16 @@ also test
 
 ## Python and Node.js
 
-If you are looking for an equivalent solution in for other languages:
+If you are looking for an equivalent solution in other languages:
 
 * [Python GPT tokenizer](https://huggingface.co/docs/transformers/model_doc/gpt2#transformers.GPT2Tokenizer)
 * [Node.js GPT encoder](https://www.npmjs.com/package/gpt-3-encoder)
+
+# Licensing
+
+This library is licensed CC0, in the public domain. You can use it for any
+application, you can modify the code, and you can redistribute any part of it.
+
+I am not affiliated with OpenAI and this library is not endorsed by them. I just
+work with several AI solutions and I share this code hoping to make technology
+more accessible and easier to work with.

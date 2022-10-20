@@ -79,7 +79,7 @@
 	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/SPACE_WITHIN_TYPECAST_PARENTHESES/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/STICK_COMMENT/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_LINES/@EntryValue">False</s:Boolean>
-	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Copyright (c) Devis Lucato. MIT License.</s:String>
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">@author: Devis Lucato. @license: CC0.</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=AI/@EntryIndexedValue">AI</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=GPT/@EntryIndexedValue">GPT</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=GPT3/@EntryIndexedValue">GPT3</s:String>
@@ -185,7 +185,7 @@ public void It$SOMENAME$()
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DEC4D140B393B04F8A18C0913BDE0592/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DEC4D140B393B04F8A18C0913BDE0592/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DEC4D140B393B04F8A18C0913BDE0592/Shortcut/@EntryValue">copy</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DEC4D140B393B04F8A18C0913BDE0592/Text/@EntryValue">// Copyright (c) Devis Lucato. MIT License.
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=DEC4D140B393B04F8A18C0913BDE0592/Text/@EntryValue">// @author: Devis Lucato. @license: CC0.
 </s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Devis/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Lucato/@EntryIndexedValue">True</s:Boolean>

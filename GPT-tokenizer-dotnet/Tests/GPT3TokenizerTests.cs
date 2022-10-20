@@ -1,4 +1,4 @@
-// Copyright (c) Devis Lucato. MIT License.
+// @author: Devis Lucato. @license: CC0.
 
 using System.Collections.Generic;
 using System.Text.Json;
