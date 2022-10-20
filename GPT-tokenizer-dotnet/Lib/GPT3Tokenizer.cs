@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using AI.Dev.OpenAI.GPT.GPT3Settings;
+using AI.Dev.OpenAI.GPT.Settings;
 
 namespace AI.Dev.OpenAI.GPT
 {
@@ -17,6 +17,7 @@ namespace AI.Dev.OpenAI.GPT
 
         public static List<int> Encode(string text)
         {
+            if (string.IsNullOrEmpty(text)) return new List<int>();
             Dictionary<int, char> byteEncoder = BytesToUnicode();
 
             string pat = @"'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+";
@@ -26,11 +27,26 @@ namespace AI.Dev.OpenAI.GPT
             foreach (Match? match in matches)
             {
                 string token = new string(Encoding.UTF8.GetBytes(match!.Value).Select(x => byteEncoder[x]).ToArray());
-                List<int> newTokens = BytePairEncoding(token).Split(' ').Select(x => Settings.Encoder[x]).ToList();
+                List<int> newTokens = BytePairEncoding(token).Split(' ').Select(x => GPT3Settings.Encoder[x]).ToList();
                 bpeTokens.AddRange(newTokens);
             }
 
             return bpeTokens;
+        }
+
+        public static List<int> Encode(StringBuilder? stringBuilder)
+        {
+            return stringBuilder == null ? new List<int>() : Encode(stringBuilder.ToString());
+        }
+
+        public static List<int> Encode(char[]? chars)
+        {
+            return chars == null ? new List<int>() : Encode(new string(chars));
+        }
+
+        public static List<int> Encode(IEnumerable<char>? chars)
+        {
+            return chars == null ? new List<int>() : Encode(chars.ToArray());
         }
 
         private static int Ord(string x) => char.ConvertToUtf32(x, 0);
@@ -79,9 +95,9 @@ namespace AI.Dev.OpenAI.GPT
                 var minPairs = new SortedDictionary<long, Tuple<string, string>>();
                 foreach (Tuple<string, string> pair in pairs)
                 {
-                    if (Settings.BpeRanks.ContainsKey(pair))
+                    if (GPT3Settings.BpeRanks.ContainsKey(pair))
                     {
-                        int rank = Settings.BpeRanks[pair];
+                        int rank = GPT3Settings.BpeRanks[pair];
                         minPairs[rank] = pair;
                     }
                     else
@@ -91,7 +107,7 @@ namespace AI.Dev.OpenAI.GPT
                 }
 
                 Tuple<string, string> biGram = minPairs[minPairs.Keys.Min()];
-                if (!Settings.BpeRanks.ContainsKey(biGram)) break;
+                if (!GPT3Settings.BpeRanks.ContainsKey(biGram)) break;
 
                 string first = biGram.Item1;
                 string second = biGram.Item2;

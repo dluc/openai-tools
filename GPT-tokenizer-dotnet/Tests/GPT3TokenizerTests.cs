@@ -1,6 +1,8 @@
 // @author: Devis Lucato. @license: CC0.
 
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.Json;
 using AI.Dev.OpenAI.GPT;
 using Xunit;
@@ -28,9 +30,14 @@ public class GPT3TokenizerTests
 es una forma efectiva de comprobar el correcto funcionamiento de las unidades individuales 
 más pequeñas de los programas informáticos", 70)]
     // ReSharper restore StringLiteralTypo
-    public void CorrectTokenCount(string text, int tokenCount)
+    public void ItReturnsTheCorrectNumberOfTokens(string text, int tokenCount)
     {
+        // Act-Assert
         Assert.Equal(tokenCount, GPT3Tokenizer.Encode(text).Count);
+        Assert.Equal(tokenCount, GPT3Tokenizer.Encode(new StringBuilder(text)).Count);
+        Assert.Equal(tokenCount, GPT3Tokenizer.Encode(text.ToArray()).Count);
+        Assert.Equal(tokenCount, GPT3Tokenizer.Encode(text.ToCharArray()).Count);
+        Assert.Equal(tokenCount, GPT3Tokenizer.Encode(text.ToCharArray().ToList()).Count);
     }
 
     // TODO: check actual token IDs// ReSharper disable StringLiteralTypo
@@ -51,11 +58,15 @@ más pequeñas de los programas informáticos", 70)]
     [InlineData("Sequences of characters commonly found next to each other may be grouped together: 1234567890", "[44015,3007,286,3435,8811,1043,1306,284,1123,584,743,307,32824,1978,25,17031,2231,30924,3829]")]
     [InlineData("ἀμφὶ Ποσειδάωτα, μέγαν θεόν, ἄρχομ᾽ ἀείδειν,", "[157,120,222,34703,139,228,45495,114,7377,254,26517,38392,30950,29945,138,112,138,105,49535,32830,17394,11,18919,138,255,42063,17394,26180,7377,116,30950,139,234,26180,11,28053,120,226,33643,139,229,26517,34703,157,122,121,28053,120,222,30950,138,107,138,112,30950,29945,26180,11]")]
     // ReSharper restore StringLiteralTypo
-    public void TokenIdsMatch(string text, string tokens)
+    public void ItReturnsTheCorrectTokens(string text, string tokens)
     {
+        // Arrange
         List<int> expectedTokens = JsonSerializer.Deserialize<List<int>>(tokens)!;
+
+        // Act
         List<int> actualTokens = GPT3Tokenizer.Encode(text);
 
+        // Assert
         Assert.Equal(expectedTokens.Count, actualTokens.Count);
         Assert.Equal(tokens.Replace(" ", ""), JsonSerializer.Serialize(actualTokens).Replace(" ", ""));
     }

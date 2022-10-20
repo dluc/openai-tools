@@ -1,20 +1,20 @@
 // @author: Devis Lucato. @license: CC0.
 
-using System.Text.Json;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
-namespace AI.Dev.OpenAI.GPT.GPT3Settings
+namespace AI.Dev.OpenAI.GPT.Settings
 {
-    internal static class Settings
+    internal static class GPT3Settings
     {
         internal static Dictionary<string, int> Encoder => ENCODER.Value;
         internal static Dictionary<Tuple<string, string>, int> BpeRanks => BPE_RANKS.Value;
 
         private static readonly Lazy<Dictionary<string, int>> ENCODER = new Lazy<Dictionary<string, int>>(BuildEncoder);
         private static readonly Lazy<Dictionary<Tuple<string, string>, int>> BPE_RANKS = new Lazy<Dictionary<Tuple<string, string>, int>>(BuildBpeRanks);
-        private static readonly string? NAMESPACE = typeof(Settings).Namespace;
+        private static readonly string? NAMESPACE = typeof(GPT3Settings).Namespace;
 
         private static Dictionary<Tuple<string, string>, int> BuildBpeRanks()
         {

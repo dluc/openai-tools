@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace AI.Dev.OpenAI.GPT.GPT3Settings
+namespace AI.Dev.OpenAI.GPT.Settings
 {
     internal static class EmbeddedResource
     {

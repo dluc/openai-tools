@@ -14,12 +14,12 @@
         <Title>OpenAI GPT utils</Title>
         <Description>OpenAI GPT utils, e.g. GPT3 Tokenizer</Description>
         <Copyright>Devis Lucato</Copyright>
-        <PackageVersion>1.0.1</PackageVersion>
+        <PackageVersion>1.0.2</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="GPT3Settings\encoder.json" />
-        <EmbeddedResource Include="GPT3Settings\vocab.bpe" />
+        <EmbeddedResource Include="Settings\encoder.json" />
+        <EmbeddedResource Include="Settings\vocab.bpe" />
     </ItemGroup>
 
 </Project>
