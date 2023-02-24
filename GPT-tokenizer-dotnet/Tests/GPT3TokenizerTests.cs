@@ -29,6 +29,14 @@ public class GPT3TokenizerTests
     [InlineData(@"En programación, una prueba unitaria o test unitario (del inglés: unit test) 
 es una forma efectiva de comprobar el correcto funcionamiento de las unidades individuales 
 más pequeñas de los programas informáticos", 70)]
+    [InlineData(
+        """
+Many words map to one token, but some don't: indivisible.
+
+Unicode characters like emojis may be split into many tokens containing the underlying bytes: 🤚🏾
+
+Sequences of characters commonly found next to each other may be grouped together: 1234567890
+""", 64)]
     // ReSharper restore StringLiteralTypo
     public void ItReturnsTheCorrectNumberOfTokens(string text, int tokenCount)
     {
@@ -57,6 +65,14 @@ más pequeñas de los programas informáticos", 70)]
     [InlineData("Unicode characters like emojis may be split into many tokens containing the underlying bytes: 🤚🏾", "[3118,291,1098,3435,588,795,13210,271,743,307,6626,656,867,16326,7268,262,10238,9881,25,12520,97,248,8582,237,122]")]
     [InlineData("Sequences of characters commonly found next to each other may be grouped together: 1234567890", "[44015,3007,286,3435,8811,1043,1306,284,1123,584,743,307,32824,1978,25,17031,2231,30924,3829]")]
     [InlineData("ἀμφὶ Ποσειδάωτα, μέγαν θεόν, ἄρχομ᾽ ἀείδειν,", "[157,120,222,34703,139,228,45495,114,7377,254,26517,38392,30950,29945,138,112,138,105,49535,32830,17394,11,18919,138,255,42063,17394,26180,7377,116,30950,139,234,26180,11,28053,120,226,33643,139,229,26517,34703,157,122,121,28053,120,222,30950,138,107,138,112,30950,29945,26180,11]")]
+    [InlineData(
+        """
+Many words map to one token, but some don't: indivisible.
+
+Unicode characters like emojis may be split into many tokens containing the underlying bytes: 🤚🏾
+
+Sequences of characters commonly found next to each other may be grouped together: 1234567890
+""", "[7085, 2456, 3975, 284, 530, 11241, 11, 475, 617, 836, 470, 25, 773, 452, 12843, 13, 198, 198, 3118, 291, 1098, 3435, 588, 795, 13210, 271, 743, 307, 6626, 656, 867, 16326, 7268, 262, 10238, 9881, 25, 12520, 97, 248, 8582, 237, 122, 198, 198, 44015, 3007, 286, 3435, 8811, 1043, 1306, 284, 1123, 584, 743, 307, 32824, 1978, 25, 17031, 2231, 30924, 3829]")]
     // ReSharper restore StringLiteralTypo
     public void ItReturnsTheCorrectTokens(string text, string tokens)
     {
