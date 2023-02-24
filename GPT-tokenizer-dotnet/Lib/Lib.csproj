@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFrameworks>net5.0;net6.0;netcoreapp3.1</TargetFrameworks>
-        <LangVersion>8</LangVersion>
+        <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <AssemblyName>AI.Dev.OpenAI.GPT</AssemblyName>
         <RootNamespace>AI.Dev.OpenAI.GPT</RootNamespace>

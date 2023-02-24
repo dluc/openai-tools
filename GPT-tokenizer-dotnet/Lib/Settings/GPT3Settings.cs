@@ -12,8 +12,8 @@ namespace AI.Dev.OpenAI.GPT.Settings
         internal static Dictionary<string, int> Encoder => ENCODER.Value;
         internal static Dictionary<Tuple<string, string>, int> BpeRanks => BPE_RANKS.Value;
 
-        private static readonly Lazy<Dictionary<string, int>> ENCODER = new Lazy<Dictionary<string, int>>(BuildEncoder);
-        private static readonly Lazy<Dictionary<Tuple<string, string>, int>> BPE_RANKS = new Lazy<Dictionary<Tuple<string, string>, int>>(BuildBpeRanks);
+        private static readonly Lazy<Dictionary<string, int>> ENCODER = new(BuildEncoder);
+        private static readonly Lazy<Dictionary<Tuple<string, string>, int>> BPE_RANKS = new(BuildBpeRanks);
         private static readonly string? NAMESPACE = typeof(GPT3Settings).Namespace;
 
         private static Dictionary<Tuple<string, string>, int> BuildBpeRanks()
@@ -37,7 +37,7 @@ namespace AI.Dev.OpenAI.GPT.Settings
             return encoder;
         }
 
-        private static Dictionary<Tuple<string, string>, int> DictZip(List<Tuple<string, string>> x, List<int> y)
+        private static Dictionary<Tuple<string, string>, int> DictZip(IReadOnlyList<Tuple<string, string>> x, IReadOnlyList<int> y)
         {
             var result = new Dictionary<Tuple<string, string>, int>();
             for (int i = 0; i < x.Count; i++) result.Add(x[i], y[i]);
