@@ -90,10 +90,10 @@ más pequeñas de los programas informáticos", 70)]
     public void ItReturnsTheCorrectText(string tokens, string text)
     {
         // Arrange
-        List<int> expectedTokens = JsonSerializer.Deserialize<List<int>>(tokens)!;
+        List<int> inputTokens = JsonSerializer.Deserialize<List<int>>(tokens)!;
 
         // Act
-        var actualText = GPT3Tokenizer.Decode(expectedTokens);
+        var actualText = GPT3Tokenizer.Decode(inputTokens);
 
         // Assert
         Assert.Equal(text, actualText);
