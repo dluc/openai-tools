@@ -70,4 +70,32 @@ más pequeñas de los programas informáticos", 70)]
         Assert.Equal(expectedTokens.Count, actualTokens.Count);
         Assert.Equal(tokens.Replace(" ", ""), JsonSerializer.Serialize(actualTokens).Replace(" ", ""));
     }
+
+    [Theory]
+    [InlineData("[]", "")]
+    [InlineData("[64]", "a")]
+    [InlineData("[6485, 535, 67]", "abbccd")]
+    [InlineData("[397, 47125, 22927]", "ab bc cd")]
+    [InlineData("[21339, 352, 301, 11, 4751]", "January 1st, 2000")]
+    [InlineData("[397, 1343, 47125, 1343, 22927, 796, 838, 13]", "ab + bc + cd = 10.")]
+    [InlineData("[19182, 13, 38124, 13, 48369, 3419]", "Array.prototype.slice()")]
+    [InlineData("[9979,4695,796,37250,415,3256,705,65,1653,3256,705,66,17983,3256,705,646,694,3256,705,11129,33959,6,11208]", "const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];")]
+    [InlineData("[269,267,299,264,256,220,220,257,299,1312,285,257,300,264,220,220,796,220,220,685,705,257,299,256,705,837,220,220,705,275,1312,264,267,299,705,837,220,220,705,269,257,285,304,300,705,837,220,220,705,288,334,269,479,705,837,220,220,705,304,300,304,279,289,257,299,256,705,2361,2162,220]", " c o n s t   a n i m a l s   =   [ ' a n t ' ,   ' b i s o n ' ,   ' c a m e l ' ,   ' d u c k ' ,   ' e l e p h a n t ' ] ; ")]
+    [InlineData("[1212,318,257,1332,220,47728,241,96,47728,241,109,47728,241,110,47728,241,120,220,47728,241,110,47728,241,120,220,47728,241,103,220,47728,241,121,47728,241,106,47728,241,120,47728,241,121]", "This is a test 𝓣𝓱𝓲𝓼 𝓲𝓼 𝓪 𝓽𝓮𝓼𝓽")]
+    [InlineData("[1212,13,5008,114,35266,236,318,8582,236,114,257,47249,222,1332,8582,238,120]", "This.▶︎ is🎶 a😀 test🐼")]
+    [InlineData("[7085,2456,3975,284,530,11241,11,475,617,836,470,25,773,452,12843,13]", "Many words map to one token, but some don't: indivisible.")]
+    [InlineData("[3118,291,1098,3435,588,795,13210,271,743,307,6626,656,867,16326,7268,262,10238,9881,25,12520,97,248,8582,237,122]", "Unicode characters like emojis may be split into many tokens containing the underlying bytes: 🤚🏾")]
+    [InlineData("[44015,3007,286,3435,8811,1043,1306,284,1123,584,743,307,32824,1978,25,17031,2231,30924,3829]", "Sequences of characters commonly found next to each other may be grouped together: 1234567890")]
+    [InlineData("[157,120,222,34703,139,228,45495,114,7377,254,26517,38392,30950,29945,138,112,138,105,49535,32830,17394,11,18919,138,255,42063,17394,26180,7377,116,30950,139,234,26180,11,28053,120,226,33643,139,229,26517,34703,157,122,121,28053,120,222,30950,138,107,138,112,30950,29945,26180,11]", "ἀμφὶ Ποσειδάωτα, μέγαν θεόν, ἄρχομ᾽ ἀείδειν,")]
+    public void ItReturnsTheCorrectText(string tokens, string text)
+    {
+        // Arrange
+        List<int> expectedTokens = JsonSerializer.Deserialize<List<int>>(tokens)!;
+
+        // Act
+        var actualText = GPT3Tokenizer.Decode(expectedTokens);
+
+        // Assert
+        Assert.Equal(text, actualText);
+    }
 }
