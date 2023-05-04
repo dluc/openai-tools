@@ -14,6 +14,7 @@ namespace AI.Dev.OpenAI.GPT
     {
         private static readonly ConcurrentDictionary<string, string> BPE_CACHE = new ConcurrentDictionary<string, string>();
         private static Dictionary<int, char>? BYTES_TO_UNICODE_CACHE;
+        private static Dictionary<char, int>? UNICODE_TO_BYTES_CACHE;
 
         public static List<int> Encode(string text)
         {
@@ -49,6 +50,13 @@ namespace AI.Dev.OpenAI.GPT
             return chars == null ? new List<int>() : Encode(chars.ToArray());
         }
 
+        public static string Decode(IEnumerable<int> tokens)
+        {
+            var byteDecoder = UnicodeToBytes();
+            var text = string.Join("", tokens.Select(x => GPT3Settings.Decoder[x]));
+            return Encoding.UTF8.GetString(text.Select(x => (byte)byteDecoder[x]).ToArray());
+        }
+
         private static int Ord(string x) => char.ConvertToUtf32(x, 0);
 
         private static Dictionary<int, char> BytesToUnicode()
@@ -76,6 +84,16 @@ namespace AI.Dev.OpenAI.GPT
                 .ToDictionary(x => x.k, x => x.v);
 
             return BYTES_TO_UNICODE_CACHE;
+        }
+
+        private static Dictionary<char, int> UnicodeToBytes()
+        {
+            if (UNICODE_TO_BYTES_CACHE != null) return UNICODE_TO_BYTES_CACHE;
+
+            var byteEncoder = BytesToUnicode();
+            UNICODE_TO_BYTES_CACHE = byteEncoder.ToDictionary(x => x.Value, x => x.Key);
+
+            return UNICODE_TO_BYTES_CACHE;
         }
 
         private static string BytePairEncoding(string token)

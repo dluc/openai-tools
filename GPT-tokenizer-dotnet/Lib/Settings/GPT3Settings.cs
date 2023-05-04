@@ -10,9 +10,11 @@ namespace AI.Dev.OpenAI.GPT.Settings
     internal static class GPT3Settings
     {
         internal static Dictionary<string, int> Encoder => ENCODER.Value;
+        internal static Dictionary<int, string> Decoder => DECODER.Value;
         internal static Dictionary<Tuple<string, string>, int> BpeRanks => BPE_RANKS.Value;
 
         private static readonly Lazy<Dictionary<string, int>> ENCODER = new Lazy<Dictionary<string, int>>(BuildEncoder);
+        private static readonly Lazy<Dictionary<int, string>> DECODER = new Lazy<Dictionary<int, string>>(BuildDecoder);
         private static readonly Lazy<Dictionary<Tuple<string, string>, int>> BPE_RANKS = new Lazy<Dictionary<Tuple<string, string>, int>>(BuildBpeRanks);
         private static readonly string? NAMESPACE = typeof(GPT3Settings).Namespace;
 
@@ -35,6 +37,11 @@ namespace AI.Dev.OpenAI.GPT.Settings
             var encoder = JsonSerializer.Deserialize<Dictionary<string, int>>(json, new JsonSerializerOptions());
             if (encoder == null) throw new NullReferenceException($"[{NAMESPACE}] encoder.json deserialization returned NULL");
             return encoder;
+        }
+
+        private static Dictionary<int, string> BuildDecoder()
+        {
+            return Encoder.ToDictionary(x => x.Value, x => x.Key);
         }
 
         private static Dictionary<Tuple<string, string>, int> DictZip(List<Tuple<string, string>> x, List<int> y)
